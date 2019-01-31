@@ -1,0 +1,63 @@
+{% extends "_/base.html.twig" %}
+{% block body %}
+    <div id="main">
+    <div  class="container-fluid filter-nav__container currentPage" data-page="main">
+
+            <div class="row w-100 filter__widget-row">
+                <div class="search__input-container">
+                    <span class="search__input-label">Активные предложения за период</span>
+                </div>
+                <div class="search__input-container">
+                    <span class="search__input-label">
+                         с:
+                    </span>
+                    <date-picker style="padding: .375rem .75rem;
+                                        font-size: 1rem;
+                                        line-height: 1.5;
+                                        color: #495057;
+                                        background-color: #fff;
+                                        background-clip: padding-box;
+                                        border: 1px solid #ced4da;
+                                        border-radius: .25rem;"
+                                        v-model="date.begin">
+                    </date-picker>
+                    <input type="time" v-model="time.begin" class="form-control pelk__form-control">
+                </div>
+        <div class="search__input-container">
+                    <span class="search__input-label">
+                        по:
+                    </span>
+                    <date-picker style="padding: .375rem .75rem;
+                                        font-size: 1rem;
+                                        line-height: 1.5;
+                                        color: #495057;
+                                        background-color: #fff;
+                                        background-clip: padding-box;
+                                        border: 1px solid #ced4da;
+                                        border-radius: .25rem;"
+                                        v-model="date.end">
+                    </date-picker>
+                    <input type="time" class="form-control pelk__form-control" v-model="time.end">
+                </div>
+            </div>
+        <div class="row w-100 text-center justify-content-center mt-5">
+            <div class="col-4">
+                <input type="text" class="form-control" v-model="search" placeholder="Поиск">
+            </div>
+        </div>
+
+    </div>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+
+                <car-item
+                        v-for="car in cars"
+                        v-if="checkDate(car.rents) && checkInput(car.item)"
+                        :description='car'
+                ></car-item>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

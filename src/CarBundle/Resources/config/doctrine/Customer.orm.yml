@@ -1,0 +1,27 @@
+CarBundle\Entity\Customer:
+    type: entity
+    table: null
+    repositoryClass: CarBundle\Repository\CustomerRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        type:
+            type: string
+            length: 255
+        passport:
+            type: string
+            length: 255
+        driverNum:
+            type: string
+            length: 255
+        phone:
+            type: string
+            length: 55
+    lifecycleCallbacks: {  }

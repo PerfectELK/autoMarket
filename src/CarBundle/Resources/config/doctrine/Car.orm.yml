@@ -1,0 +1,40 @@
+CarBundle\Entity\Car:
+    type: entity
+    table: null
+    repositoryClass: CarBundle\Repository\CarRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 55
+        master:
+            type: integer
+        price:
+            type: float
+        type:
+            type: string
+            length: 55
+        fuel:
+            type: string
+            length: 55
+        active:
+            type: boolean
+        loadCapacity:
+            type: string
+            length: 55
+            nullable: true
+            column: load_capacity
+        numberOfSeats:
+            type: integer
+            length: 11
+            nullable: true
+            column: number_of_seats
+        img:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

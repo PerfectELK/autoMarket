@@ -1,0 +1,28 @@
+CarBundle\Entity\Rent:
+    type: entity
+    table: null
+    repositoryClass: CarBundle\Repository\RentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+            carId:
+                type: integer
+                length: 11
+            begingTime:
+                type: integer
+                length: 55
+            endTime:
+                type: integer
+                length: 55
+            price:
+                type: integer
+                length: 55
+            profit:
+                type: float
+                length: 55
+                nullable: true
+    lifecycleCallbacks: {  }

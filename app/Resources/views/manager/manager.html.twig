@@ -1,0 +1,78 @@
+{% extends "_/base.html.twig" %}
+{% block body %}
+    <div style="display: block" id="manager" class="currentPage" data-page="manager">
+        <div class="container mb-5 text-left">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <button class="btn btn-primary mr-2" data-toggle="modal" data-target="#addClienModal">Добавить Клиента</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#addCarModal">Добавить Авто</button>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <input class="" type="checkbox" id="gridCheck" v-model="noactive">
+                    <label class="form-check-label" for="gridCheck">Неактивные предложения
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+
+            <div class="row w-100">
+                <car-item
+                        v-for="car in cars"
+                        :key='car.id'
+                        :description='car'
+                        v-if="checkActive(car)"
+                        @modal="getCarModal"
+                        @rent="getRentModal"
+                >
+                </car-item>
+            </div>
+
+            <rent-table>
+            </rent-table>
+
+            <div class="modal fade" id="addClienModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content w-100">
+                        <div class="modal-header w-100">
+                            <h5 class="modal-title" id="exampleModalLabel">Добавить клиента</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body w-100">
+                            <add-client>
+                            </add-client>
+                        </div>
+                        <div class="modal-footer w-100">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="addCarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content w-100">
+                        <div class="modal-header w-100">
+                            <h5 class="modal-title" id="exampleModalLabel">Добавить автомобиль</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body w-100">
+                            <add-car @added="reCallCar">
+                            </add-car>
+                        </div>
+                        <div class="modal-footer w-100">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <car-modal :description="chooseCar" @pelkchange="reCallCar"></car-modal>
+            <rent-modal :description="chooseRent"></rent-modal>
+        </div>
+    </div>
+
+
+{% endblock %}
